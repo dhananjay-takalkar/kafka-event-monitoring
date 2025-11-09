@@ -1,8 +1,8 @@
 // apps/consumer/src/limits/limit-checker.ts
 import type { EventMsg, LimitName } from '@event-monitoring/shared';
-
+//EventType
 export interface LimitChecker {
-  readonly name: LimitName;
+  readonly name: any;
   readonly scope: string;
   check(
     event: EventMsg,
