@@ -1,0 +1,39 @@
+# turborepo build output
+/dist
+/.turbo
+
+# node modules & lockfiles
+node_modules/
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# env files
+.env
+.env.*
+!.env.example
+
+# local logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# misc
+.DS_Store
+.idea/
+.vscode/
+coverage/
+*.tsbuildinfo
+
+# nestjs build outputs
+dist/
+!.github/
+!.vscode/
+*.swp
+# turbo cache
+.turbo/
+# End Generation Here
+```
