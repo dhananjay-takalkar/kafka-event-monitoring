@@ -58,7 +58,7 @@ The consumer service follows a layered (hexagonal) structure to keep framework c
 4. When a limit is returned, `ProcessEventUseCase` calls `LIMIT_NOTIFICATION_PORT` with the user, date, and limit name.
 5. `NotificationServiceAdapter` delegates to `CreateNotificationUseCase`, which persists a MongoDB document via `MongooseNotificationStore`.
 
-Redis holds transient state for delete counts and sliding windows; MongoDB stores durable notification history. Logging happens through `AppLoggerService`, emitting structured JSON to stdout.
+Redis holds transient state for delete counts and sliding windows, MongoDB stores durable notification history. Logging happens through `AppLoggerService`, emitting structured JSON to stdout.
 
 ## Configuration
 
@@ -98,7 +98,7 @@ pnpm install
 pnpm docker:up
 ```
 
-> Redis and MongoDB are **not** defined in `docker-compose.yml`; launch them separately.
+> Redis and MongoDB are **not** defined in `docker-compose.yml`, launch them separately.
 
 ### Run the consumer service
 
@@ -127,7 +127,7 @@ pnpm consumer:test
 - `pnpm dev` → parallel dev servers/watchers.
 - `pnpm build` → compiles packages using `turbo run build`.
 
-Turborepo caching emits warnings if no outputs are declared; adjust `turbo.json` when adding new build artifacts.
+Turborepo caching emits warnings if no outputs are declared, adjust `turbo.json` when adding new build artifacts.
 
 ## Extending the System
 
