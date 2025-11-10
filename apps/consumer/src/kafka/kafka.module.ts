@@ -1,10 +1,7 @@
 import { Module } from '@nestjs/common';
-import { KafkaService } from './kafka.service';
-import { LimitsModule } from 'src/limits/limits.module';
+import { IngestionModule } from 'src/ingestion/ingestion.module';
 
 @Module({
-  imports: [LimitsModule],
-  providers: [KafkaService],
-  exports: [KafkaService],
+  imports: [IngestionModule],
 })
 export class KafkaModule {}

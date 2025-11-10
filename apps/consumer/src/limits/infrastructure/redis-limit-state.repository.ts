@@ -1,9 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { Redis } from 'ioredis';
+import { LimitStatePort } from '../domain/ports/limit-state.port';
 
 @Injectable()
-export class LimitStateRepository {
-  private static readonly USER_DELETE_TTL_SECONDS = 24 * 60 * 60; // 1 day
+export class RedisLimitStateRepository implements LimitStatePort {
+  private static readonly USER_DELETE_TTL_SECONDS = 24 * 60 * 60;
 
   constructor(
     @Inject('REDIS_CLIENT')
@@ -15,7 +16,7 @@ export class LimitStateRepository {
     const pipeline = this.redis
       .multi()
       .incr(key)
-      .expire(key, LimitStateRepository.USER_DELETE_TTL_SECONDS, 'NX');
+      .expire(key, RedisLimitStateRepository.USER_DELETE_TTL_SECONDS, 'NX');
     const results = await pipeline.exec();
     const incrementResult = results?.[0]?.[1] ?? 0;
     return Number(incrementResult);

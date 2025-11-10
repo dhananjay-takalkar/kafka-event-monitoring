@@ -1,7 +1,6 @@
-import { type LimitName } from '@event-monitoring/shared';
+import type { LimitName } from '@event-monitoring/shared';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-export type NotificationDocument = HydratedDocument<NotificationSchema>;
 
 @Schema({
   timestamps: true,
@@ -10,11 +9,15 @@ export type NotificationDocument = HydratedDocument<NotificationSchema>;
 export class NotificationSchema {
   @Prop({ required: true })
   userId: number;
+
   @Prop({ required: true })
   date: string;
+
   @Prop({ required: true })
   limit: LimitName;
 }
+
+export type NotificationDocument = HydratedDocument<NotificationSchema>;
 
 export const NotificationSchemaFactory =
   SchemaFactory.createForClass(NotificationSchema);

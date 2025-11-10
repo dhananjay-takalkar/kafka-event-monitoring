@@ -9,7 +9,7 @@ import Redis from 'ioredis';
       provide: 'REDIS_CLIENT',
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        const url = config.get<string>('REDIS_URL') ?? 'redis://localhost:6379';
+        const url = config.get<string>('REDIS_URL') || 'redis://localhost:6379';
         return new Redis(url, {
           maxRetriesPerRequest: 3,
         });

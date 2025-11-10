@@ -7,7 +7,10 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "consumer:dev": "pnpm --filter consumer start:dev",
+    "consumer:test": "pnpm --filter consumer test",
+    "docker:up": "docker compose up -d"
   },
   "devDependencies": {
     "turbo": "^2.6.0",
