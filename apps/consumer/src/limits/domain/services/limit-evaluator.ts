@@ -11,7 +11,7 @@ export class LimitEvaluator {
   }
 
   async evaluate(event: EventMsg): Promise<LimitName | null> {
-    const scopeRoot = event.scope.split('.')[0];
+    const scopeRoot = event?.scope?.split('.')[0];
     const checker = this.limitCheckers.get(scopeRoot);
     if (!checker) return null;
     return checker.check(event);

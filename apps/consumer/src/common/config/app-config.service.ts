@@ -19,10 +19,7 @@ export class AppConfigService {
   }
 
   get mongoUri(): string {
-    return (
-      this.configService.get<string>('MONGODB_URI') ||
-      'mongodb://localhost:27017/event-monitoring'
-    );
+    return this.configService.get<string>('MONGODB_URI') ?? '';
   }
 
   get kafka(): KafkaConfig {
@@ -66,7 +63,7 @@ export class AppConfigService {
     const list =
       this.configService.get<string>('KAFKA_BROKERS') ??
       this.configService.get<string>('KAFKA_BROKER_URL');
-    if (!list) return ['localhost:9092'];
+    if (!list) return [];
     return list
       .split(',')
       .map((broker) => broker.trim())

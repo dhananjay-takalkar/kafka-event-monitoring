@@ -47,4 +47,22 @@ describe('ProcessEventUseCase', () => {
       limit: 'TOP_SECRET_READ',
     });
   });
+  it('Invalid data provided in payload to the use case', async () => {
+    const wrongEvent = {
+      userId: '1',
+      scope: 'top-secret',
+      date: '2024-01-01T00:00:00.000Z',
+    };
+    const result = await useCase.process(wrongEvent as unknown as EventMsg);
+    expect(result).toBeUndefined();
+    expect(notificationPort.notifyLimitBreach).not.toHaveBeenCalled();
+  });
+  it('Wrong data provided in payload', async () => {
+    const wrongEvent = {
+      data: '',
+    };
+    const result = await useCase.process(wrongEvent as unknown as EventMsg);
+    expect(result).toBeUndefined();
+    expect(notificationPort.notifyLimitBreach).not.toHaveBeenCalled();
+  });
 });
